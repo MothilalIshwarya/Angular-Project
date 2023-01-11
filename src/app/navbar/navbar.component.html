@@ -1,0 +1,25 @@
+<div class="sidebar pe-4 pb-3" id="sidebar">
+    <nav class="navbar navbar-light">
+        <h3 class="text-primary navbar-brand logo">TMS</h3>
+        <div class="navbar-nav w-100"><a routerLink="/Home" routerLinkActive="active"
+                class="nav-item nav-link "><i class="fa fa-home" aria-hidden="true"></i>Home</a></div>
+        <div class="navbar-nav w-100">
+            <a  routerLink="/Dashboard" routerLinkActive="active" class="nav-item nav-link"><i
+                    class="fa fa-desktop" aria-hidden="true"></i>Dashboard</a>
+            <a  routerLink="/Profile" routerLinkActive="active" class="nav-item nav-link"><i
+                    class="fa fa-address-card"></i>My Profile</a>
+            <a  routerLink="/ViewCostModel" routerLinkActive="active" class="nav-item nav-link"><i
+                   class="fa fa-address-card"></i>Cost Model</a>
+           
+        </div>
+    </nav>
+</div>
+<nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+    <a class="sidebar-toggler flex-shrink-0"  (click)="toggleNavbar()"><i class="fa fa-bars"></i></a>
+    <!-- <div class="navbar-nav align-items-center ms-auto">
+        <div class="nav-item"><a routerLink="/"><i class="fa fa-sign-out" aria-hidden="true"
+                    > &nbsp; LogOut</i></a></div>
+        <div><a  routerLink="/Login"><i class="fa fa-sign-out" aria-hidden="true"> &nbsp;
+                    LogIn</i></a></div> -->
+    <!-- </div> -->
+</nav>
