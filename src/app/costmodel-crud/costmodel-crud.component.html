@@ -45,29 +45,42 @@
 
 <div class="row">
     <div class="col-xs-12 " style="padding-left: 40px;">
-      <form>
+      <form [formGroup]="CostModelForm" #ngForm (ngSubmit)="Onsubmit(CostModelForm)">
         <!-- <div class="row"> -->
           <div class="col-sm-8 form-group">
             <label for="courseName">Cost Model Name</label>
-            <input
+            <input formControlName="CostModelName" name="CostModelName" [(ngModel)]="CostModelForm.CostModelName"
               type="text"
               id="courseName"
               class="form-control">
+              <div *ngIf="CostModelForm.controls['CostModelName'].invalid && (CostModelForm.controls['CostModelName'].dirty || CostModelForm.controls['CostModelName'].touched)" class="alert alert-danger">
+              
+                <div *ngIf="CostModelForm.controls['CostModelName'].errors?.['minlength']">CostModelName must be at least 2 characters long.</div>
+                <div *ngIf="CostModelForm.controls['CostModelName'].errors?.['maxlength']">CostModelName don't exceed 25 characters long.</div>
+                <div *ngIf="CostModelForm.controls['CostModelName'].errors?.['required']">Course CostModelName is required.</div>
+                <!-- <div *ngIf="CostModelForm.controls['CostModelName'].errors?.['serverError']">{{this.CostModelForm.controls['CostModelName'].getError('serverError')}}</div> -->
+                <div *ngIf="CostModelForm.controls['CostModelName'].invalid || CostModelForm.controls['CostModelName'].errors?.['maxlength']">Please enter a valid Course CostModelName</div>
+            </div>
           </div>
           <div class="col-sm-8 form-group">
             <label for="courseDesc">Cost Model Description</label>
-            <input
-              type="text"
-              id="courseDesc"
-              class="form-control">
+            <input formControlName="Description" name="Description" [(ngModel)]="CostModelForm.Description" type="text" id="courseDesc" class="form-control">
+            <div *ngIf="CostModelForm.controls['Description'].invalid && (CostModelForm.controls['Description'].dirty || CostModelForm.controls['Description'].touched)" class="alert alert-danger">
+              
+              <div *ngIf="CostModelForm.controls['Description'].errors?.['minlength']">Description must be at least 10 characters long.</div>
+              <div *ngIf="CostModelForm.controls['Description'].errors?.['maxlength']">Description don't exceed 1000 characters long.</div>
+              <div *ngIf="CostModelForm.controls['Description'].errors?.['required']">Course Description is required.</div>
+              <!-- <div *ngIf="CostModelForm.controls['Description'].errors?.['serverError']">{{this.CostModelForm.controls['Description'].getError('serverError')}}</div> -->
+              <div *ngIf="CostModelForm.controls['Description'].invalid || CostModelForm.controls['Description'].errors?.['maxlength']">Please enter a valid Course Description</div>
+          </div>
           </div>
          
         <!-- </div> -->
         <div class="row pt-5 ">
           <div class="col-xs-12">
-            <button
-              class="btn btn-dark pe-4 px-4 hover"
-              type="submit">Add</button>
+            <button  [disabled]="!CostModelForm.valid"
+              class="btn btn-dark pe-4 px-4 hover" routerLink="/ViewCostModel"
+              type="submit">{{pageAction}}</button>
             <!-- <button
               class="btn btn-danger"
               type="button">Delete</button> -->

@@ -7,8 +7,8 @@
                  <li class="breadcrumb-item active">{{title}} List</li>
              </ol>
          </nav>
-         <div class="container-fluid px-4 pt-2 pb-2">
-             <h3 class="text-black pb-2">{{title}} List</h3>
+         <div class="container-fluid px-4 pt-2 ">
+             <h3 class="text-black">{{title}} List</h3>
              <div class="header" id="style">
                  <a routerLink="/AddCostModel"><button type="button" class="btn btn-dark pe-4 px-4 hover"
                           title="Click here to Add {{title}}">Add</button></a>
@@ -18,7 +18,7 @@
                  
              </div>
              
-             <div class="container-fluid pt-5 px-20 pt-2 pb-2 d-flex justify-content-between align-items-center rounded">
+             <div class="container-fluid pt-5 px-20 pt-2 d-flex justify-content-between align-items-center rounded">
                 <table  class="table  table-striped " style="width: 96%;height:max-content;">            
                     <thead>            
                         <tr scope="row" class="headtrstyle" >          
@@ -34,7 +34,7 @@
                             <td class="col-md-8">{{item.Description}}</td> 
                             <td>
                                 <div style="padding-left: 50px;">
-                                    <a class="col-md-1"><i class="fa-solid fa-pen-to-square text-dark"
+                                    <a class="col-md-1"><i class="fa-solid fa-pen-to-square text-dark" routerLink="/EditCostModel/{{item.id}}"
                                     title="Click here to edit {{title}}"></i></a>
                                 </div>
                             </td>
