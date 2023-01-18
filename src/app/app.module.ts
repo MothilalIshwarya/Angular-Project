@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { CostmodellistComponent } from './costmodellist/costmodellist.component';
 import { CostmodelCRUDComponent } from './costmodel-crud/costmodel-crud.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -17,7 +16,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     CostmodellistComponent,
     CostmodelCRUDComponent,
     NavbarComponent,
-    HeaderComponent,
     FooterComponent
   ],
   imports: [

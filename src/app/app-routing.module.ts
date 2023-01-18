@@ -6,7 +6,8 @@ import { CostmodellistComponent } from './costmodellist/costmodellist.component'
 const routes: Routes = [
   {path:'ViewCostModel',component:CostmodellistComponent},
   {path:'AddCostModel',component:CostmodelCRUDComponent},
-  {path:'EditCostModel/:id',component:CostmodelCRUDComponent}
+  {path:'EditCostModel/:id',component:CostmodelCRUDComponent},
+  
 ];
 
 @NgModule({
