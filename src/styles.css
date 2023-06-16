@@ -195,6 +195,8 @@ a{
     align-items: center;
     justify-content: center;
     /* background: #FFFFFF; */
+    color:black;
+    text-decoration: none;
     border-radius: 40px;
 }
 
@@ -286,9 +288,18 @@ a{
 
 #search {
     max-height: 40px;
-    margin-left: 8%;
-    margin-right: 8%;
+    width: 50%;
+    margin-right: 2%;
+    margin-left: 1%;
+    /* position: fixed; */
+    
+    /* margin-left: 8%; */
+  
 }
+
+/* .input-group{
+  position: fixed !important;
+} */
 
 background-image {
     background-image: url(/src/img/bb.jpg);
@@ -442,9 +453,15 @@ body {
  }
 
 .sticky-footer {
-    position: sticky;
-    top: 100%;
+    position:fixed;
+    width: 100%;
+    top: 90%;
 }
+/* @media (min-width: 768px) {
+  .sticky-footer {
+    width: 100vw; 
+  }
+} */
 .pagination{
     position: sticky ;
     top: 90%;
@@ -712,12 +729,15 @@ body {
     font-size: 20px;
   }
   .headtrstyle{
-    height: 70px;
+    /* height: 70px; */
     text-align: left;
-    color:white;background-color:rgb(19, 3, 3);
-    font-size: 40px ;
     
+    color:white;
+    background-color:rgb(19, 3, 3);
+    font-size: 40px ;
+ 
   }
+
     td{
     border:2px solid black;
     height: 70px;
@@ -735,5 +755,54 @@ body {
     font-size: 20px;
   }
   
- 
- 
+  .mat-slide-toggle-thumb {
+    width: 10px !important;
+    height: 10px !important;
+    transform: translate(50%, 50%);
+    background-color: white;
+}
+
+.mat-slide-toggle-bar {
+  background-color: #000;
+  border-radius: 15px !important;
+  height: 16px !important;
+}
+
+.mat-slide-toggle-thumb-container {
+  top: -2px !important;
+}
+
+ /* .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: white;
+} */
+
+/* .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: #fff;
+}  */
+.green-toggle-bar .mat-slide-toggle-bar {
+  background-color: green;
+  /* background-color: white; */
+  outline:1px solid black;
+}
+
+.red-toggle-bar .mat-slide-toggle-bar {
+  background-color: red;
+  outline:1px solid black;
+  /* background-color: #000; */
+}
+  .mat-slide-toggle-input {
+    display: none;
+  }
+  .table{ 
+    overflow: scroll;
+    min-width: max-content;
+  }
+  .pad { padding-left: 0%; padding-right: 0%;}
+  .edit-icon {cursor: pointer;}
+  .paginationDesign{
+    /* bottom: 10%;  */
+    top: 82%;
+    position: fixed;
+    padding-left: 25%;
+    padding-bottom: 2%;
+  }

@@ -1,0 +1,115 @@
+<div class="content">
+    <app-navbar></app-navbar>
+    <div class="pt-4 px-4">
+      <div class="container-fluid pt-2 px-4">
+        <!-- Title -->
+        <h3 class="text-black pb-2">{{UnitDefinitionForm.get('id').value===0?"Add UnitDefinition":"Edit UnitDefinition"}}</h3>
+      </div>
+  
+      <div class="row">
+        <div class="col-xs-12">
+          <!-- Reactive Form -->
+          <form [formGroup]="UnitDefinitionForm" action="" name="myForm " #ngForm (ngSubmit)="Onsubmit(UnitDefinitionForm)">
+            <!-- ImportType Name Field Form Validations -->
+            <div class="col-sm-8 form-group px-4">
+              <label for="courseName" class="pb-3">UnitDefinitionCode</label>
+              <input formControlName="unitDefinitionCode" name="unitDefinitionCode" [(ngModel)]="UnitDefinition.unitDefinitionCode"
+                type="text" id="courseName" class="form-control" placeholder="Enter UnitDefinitionCode">
+              <div
+                *ngIf="UnitDefinitionForm.controls['unitDefinitionCode'].invalid && (UnitDefinitionForm.controls['unitDefinitionCode'].dirty || UnitDefinitionForm.controls['unitDefinitionCode'].touched)"
+                class="alert alert-danger">
+  
+                <div *ngIf="UnitDefinitionForm.controls['unitDefinitionCode'].errors?.['minlength']">unitDefinitionCode must be at least
+                  2 characters long.</div>
+                <div *ngIf="UnitDefinitionForm.controls['unitDefinitionCode'].errors?.['maxlength']">unitDefinitionCode don't exceed 20
+                  characters long.</div>
+                <div *ngIf="UnitDefinitionForm.controls['unitDefinitionCode'].errors?.['required']"> Field is
+                  required.</div>
+                <!-- <div
+                  *ngIf="UnitDefinitionForm.controls['unitDefinitionCode'].invalid || UnitDefinitionForm.controls['unitDefinitionCode'].errors?.['maxlength']">
+                  Please enter a valid  unitDefinitionCode</div> -->
+              </div>
+              <div class="alert alert-danger" *ngIf="ErrorMessage">{{ErrorMessage}}</div>
+            </div>
+            <!-- ImportType Description Field Form Validations -->
+            <div class="col-sm-8 form-group px-4">
+              <label for="courseDesc" class="py-3">Description</label>
+              <textarea formControlName="description" name="description" [(ngModel)]="UnitDefinition.description"
+                type="text" id="courseDesc" class="form-control " placeholder="Enter UnitDefinition description"></textarea>
+              <div
+                *ngIf="UnitDefinitionForm.controls['description'].invalid && (UnitDefinitionForm.controls['description'].dirty || UnitDefinitionForm.controls['description'].touched)"
+                class="alert alert-danger">
+  
+                <div *ngIf="UnitDefinitionForm.controls['description'].errors?.['minlength']">description must be at least 10
+                  characters long.</div>
+                <div *ngIf="UnitDefinitionForm.controls['description'].errors?.['maxlength']">description don't exceed 500
+                  characters long.</div>
+                <div *ngIf="UnitDefinitionForm.controls['description'].errors?.['required']"> Field is required.
+                </div>
+                <!-- <div
+                  *ngIf="UnitDefinitionForm.controls['description'].invalid || UnitDefinitionForm.controls['description'].errors?.['maxlength']">
+                  Please enter a valid Course description</div> -->
+              </div>
+            </div>
+
+            <!-- ImportType short Description Field Form Validations -->
+            <div class="col-sm-8 form-group px-4">
+                <label for="courseDesc" class="py-3">Short Description</label>
+                <textarea formControlName="shortDescription" name="shortdescription" [(ngModel)]="UnitDefinition.shortDescription"
+                  type="text" id="courseDesc" class="form-control " placeholder="Enter UnitDefinition short description"></textarea>
+                <div
+                  *ngIf="UnitDefinitionForm.controls['shortDescription'].invalid && (UnitDefinitionForm.controls['shortDescription'].dirty || UnitDefinitionForm.controls['shortDescription'].touched)"
+                  class="alert alert-danger">
+    
+                  <div *ngIf="UnitDefinitionForm.controls['description'].errors?.['minlength']">short description must be at least 10
+                    characters long.</div>
+                  <div *ngIf="UnitDefinitionForm.controls['description'].errors?.['maxlength']">short description don't exceed 500
+                    characters long.</div>
+                  <div *ngIf="UnitDefinitionForm.controls['description'].errors?.['required']"> Field is required.
+                  </div>
+                  <!-- <div
+                    *ngIf="UnitDefinitionForm.controls['description'].invalid || UnitDefinitionForm.controls['description'].errors?.['maxlength']">
+                    Please enter a valid Course description</div> -->
+                </div>
+              </div>
+
+
+              <!-- ImportType Description Field Form Validations -->
+            <div class="col-sm-8 form-group px-4">
+                <label for="courseDesc" class="py-3">Usage Tip</label>
+                <textarea formControlName="usageTip" name="shortdescription" [(ngModel)]="UnitDefinition.usageTip"
+                  type="text" id="courseDesc" class="form-control " placeholder="Enter UnitDefinition Usage Tip"></textarea>
+                <div
+                  *ngIf="UnitDefinitionForm.controls['usageTip'].invalid && (UnitDefinitionForm.controls['usageTip'].dirty || UnitDefinitionForm.controls['usageTip'].touched)"
+                  class="alert alert-danger">
+    
+                  <div *ngIf="UnitDefinitionForm.controls['usageTip'].errors?.['minlength']">description must be at least 10
+                    characters long.</div>
+                  <div *ngIf="UnitDefinitionForm.controls['usageTip'].errors?.['maxlength']">description don't exceed 500
+                    characters long.</div>
+                  <div *ngIf="UnitDefinitionForm.controls['usageTip'].errors?.['required']">Field is required.
+                  </div>
+                  <!-- <div
+                    *ngIf="UnitDefinitionForm.controls['usageTip'].invalid || UnitDefinitionForm.controls['usageTip'].errors?.['maxlength']">
+                    Please enter a valid Course description</div> -->
+                </div>
+              </div>
+
+
+
+
+  
+  
+            <div class="row p-4">
+              <div class="col-md-12 ">
+                <button [disabled]="!UnitDefinitionForm.valid" type="submit" class="btn btn-dark pe-4 px-4 hover"
+                  type="submit">{{UnitDefinitionForm.get('id').value===0?"Add":"Edit"}}</button>
+                  <button  class="btn btn-dark pe-4 px-4 hover mx-2" routerLink="/ViewUnitDefinition"
+                  type="submit">Cancel</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <app-footer></app-footer>

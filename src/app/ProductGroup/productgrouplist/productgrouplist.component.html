@@ -1,0 +1,77 @@
+<div class="content">
+    <app-navbar></app-navbar>
+    <div class="pt-4 px-4">
+        <div class="container-fluid px-4 pt-2 ">
+            <!-- Page Title -->
+            <div class="scroll">
+                <h3 class="text-black">ProductGroup List</h3>
+                <div class="header pt-3 input-group">
+                    <!-- Search -->
+                    <input #search class="form-control hover" id="search" type="text" placeholder="Search"
+                        aria-label="Search" (keyup)="FilterByProductGroup(search)">
+                    <!-- Add Button -->
+                    <a routerLink="/AddProductGroup">
+                        <button type="button" class="btn btn-dark pe-4 px-4 hover ">Add</button>
+                    </a>
+                </div>
+            </div>
+            <!-- Grid View -->
+            <div class="container-fluid pt-5 d-flex justify-content-between align-items-center rounded pad">
+                <table class="table ">
+                    <thead>
+                        <tr scope="row" class="headtrstyle">
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>costModel</th>
+                            <th>Agreement</th>
+                            <th>UnitFactor</th>
+                            <th>Comments</th>
+                            <th>AccountBy Group</th>
+                            <th>Grace period</th>
+                            <th>Support groupId</th>
+                            <th> Action</th>
+                            <th>Enabled</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            *ngFor="let item of ProductGroup| paginate: {itemsPerPage : 5, currentPage: page,totalItems:totalLength}">
+                            <td>{{item.productGroupCode}}</td>
+                            <td>{{item.productGroupName}}</td>
+                            <td>{{item.description_CostModel}}</td>
+                            <td>{{item.description_Agreement}}</td>
+                            <td>{{item.description_UnitFactor}}</td>
+                            <td>{{item.comment}}</td>
+                            <td>{{item.accountByGroup}}</td>
+                            <td>{{item.graceperiod}}</td>
+                            <td>{{item.supportgroupId}}</td>
+                            <td>
+                                <!-- Edit Icon -->
+                                <div class="edit-icon">
+                                    <a><i class="fa-solid fa-pen-to-square text-dark"
+                                            routerLink="/EditProductGroup/{{item.id}}"></i></a>
+                                </div>
+                            </td>
+                            <td>
+                                <!-- Delete Icon -->
+                                <mat-slide-toggle aria-label="Enable feature" name="enabled"
+                                    [checked]="item.enabled ===1" (click)="DeleteProductGroup(item.id,item.enabled)"
+                                    [ngClass]="{'green-toggle-bar': item.enabled === 1, 'red-toggle-bar': item.enabled === 0}">
+                                </mat-slide-toggle>
+                                <!-- </div> -->
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+            </div>
+            <!-- Pagination -->
+            <div *ngIf="ProductGroup.length > 5" class="mt-4 paginationDesign">
+                <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>

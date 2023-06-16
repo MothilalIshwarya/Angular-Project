@@ -1,0 +1,158 @@
+<div class="content">
+  <app-navbar></app-navbar>
+  <div class="pt-4 px-4">
+    <div class="container-fluid pt-2 px-4">
+      <!-- Title -->
+      <h3 class="text-black pb-2">{{ProductGroupForm.get('id').value===0 ?"Add ProductGroup":"Edit ProductGroup"}}</h3>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <!-- Reactive Form -->
+        <form [formGroup]="ProductGroupForm" name="ProductGroupForm " (ngSubmit)="Onsubmit(ProductGroupForm)">
+          <!-- ProductGroupCode Field Form Validations -->
+          <div class="col-sm-8 form-group px-4">
+            <label  for="ProductGroupCode" class="pb-3">ProductGroup code</label>
+            <input formControlName="productGroupCode" name="productGroupCode" type="text" id="ProductGroupCode"
+              class="form-control" placeholder="Enter ProductGroupCode">
+            <div
+              *ngIf="ProductGroupForm.controls['productGroupCode'].invalid && (ProductGroupForm.controls['productGroupCode'].dirty || ProductGroupForm.controls['productGroupCode'].touched)"
+              class="alert alert-danger">
+
+              <div *ngIf="ProductGroupForm.controls['productGroupCode'].errors?.['minlength']">productGroupCode must be
+                at least 5 characters long.</div>
+              <div *ngIf="ProductGroupForm.controls['productGroupCode'].errors?.['maxlength']">productGroupCode don't
+                exceed 50 characters long.</div>
+              <div *ngIf="ProductGroupForm.controls['productGroupCode'].errors?.['required']"> Field is
+                required.</div>
+            </div>
+            <div class="alert alert-danger" *ngIf="errormsg ">{{errormsg}}
+            </div>
+
+          </div>
+          <!-- ProductGroupName Field Form Validations -->
+          <div class="col-sm-8 form-group px-4">
+            <label for="ProductGroupName" class="py-3">ProductGroup Name</label>
+            <input formControlName="productGroupName" name="productGroupName" type="text" id="ProductGroupName"
+              class="form-control " placeholder="Enter ProductGroupName" />
+            <div
+              *ngIf="ProductGroupForm.controls['productGroupName'].invalid && (ProductGroupForm.controls['productGroupName'].dirty || ProductGroupForm.controls['productGroupName'].touched)"
+              class="alert alert-danger">
+
+              <div *ngIf="ProductGroupForm.controls['productGroupName'].errors?.['minlength']">ProductGroupName must be
+                at least 5 characters long.</div>
+              <div *ngIf="ProductGroupForm.controls['productGroupName'].errors?.['maxlength']">ProductGroupName don't
+                exceed 510 characters long.</div>
+              <div *ngIf="ProductGroupForm.controls['productGroupName'].errors?.['required']"> Field is
+                required.
+              </div>
+            </div>
+          </div>
+          <!-- CostModelId Field Form Validations -->
+          <div class="col-sm-8 form-group px-4">
+            <label for="CostModelName" class="py-3">CostModel</label>
+
+            <select name="costModelId" id="CostModelName" formControlName="costModelId" class="form-select">
+              <option disabled value="0">Select the CostModel</option>
+              <option *ngFor="let item of CostModel" value={{item.id}}> {{item.description}}</option>
+            </select>
+            <div
+              *ngIf="ProductGroupForm.get('costModelId').value === 0 && (ProductGroupForm.controls['costModelId'].dirty || ProductGroupForm.controls['costModelId'].touched)"
+              class="alert alert-danger"> Field is Required</div>
+            <div *ngIf="ProductGroupForm.controls['costModelId'].errors?.['required']"> Field is Required</div>
+          </div>
+          <!-- unitFactorId Field Form Validations -->
+          <div class="col-sm-8 form-group px-4">
+            <label for="unitFactorId" class="py-3">UnitFactor</label>
+            <select name="unitFactorId" id="unitFactorId" formControlName="unitFactorId" class="form-select">
+              <option disabled value="0">Select the unitFactor</option>
+              <option *ngFor="let item of UnitFactor" value={{item.id}}> {{item.description}}</option>
+            </select>
+            <div
+              *ngIf="ProductGroupForm.get('unitFactorId').value === 0 && (ProductGroupForm.controls['unitFactorId'].dirty || ProductGroupForm.controls['unitFactorId'].touched)"
+              class="alert alert-danger"> Field is Required</div>
+            <div *ngIf="ProductGroupForm.controls['unitFactorId'].errors?.['required']"> Field is Required</div>
+            <!-- </div> -->
+          </div>
+          <!-- Agreement Field Form Validations -->
+          <div class="col-sm-8 form-group px-4">
+            <label for="AgreementCode" class="py-3">Agreement</label>
+            <select name="agreementId" id="AgreementCode" formControlName="agreementId" class="form-select">
+              <option disabled value="0">Select the AgreementCode</option>
+              <option *ngFor="let item of Agreement" value={{item.id}}> {{item.description}}</option>
+            </select>
+            <div
+              *ngIf="ProductGroupForm.get('agreementId').value === 0 && (ProductGroupForm.controls['agreementId'].dirty || ProductGroupForm.controls['agreementId'].touched)"
+              class="alert alert-danger"> Field is Required</div>
+            <div *ngIf="ProductGroupForm.controls['agreementId'].errors?.['required']"> Field is Required</div>
+            <!-- </div> -->
+          </div>
+          <!-- accountByGroup Field Form Validations -->
+          <div class="col-sm-8 form-group px-4">
+            <label for="accountByGroup" class="py-3">AccountByGroup</label>
+            <input formControlName="accountByGroup" name="accountByGroup" type="number" id="accountByGroup"
+              class="form-control " placeholder="Enter AccountByGroup" />
+            <div
+              *ngIf="ProductGroupForm.controls['accountByGroup'].invalid && (ProductGroupForm.controls['accountByGroup'].dirty || ProductGroupForm.controls['accountByGroup'].touched)"
+              class="alert alert-danger">
+              <div *ngIf="ProductGroupForm.controls['accountByGroup'].errors?.['required']"> Field is Required.
+              </div>
+            </div>
+          </div>
+          <!-- graceperiod Field Form Validations -->
+          <div class="col-sm-8 form-group px-4">
+            <label for="graceperiod" class="py-3">GracePeriod</label>
+            <input formControlName="graceperiod" name="graceperiod" type="number" id="graceperiod" class="form-control "
+              placeholder="Enter GracePeriod" />
+            <div
+              *ngIf="ProductGroupForm.controls['graceperiod'].invalid && (ProductGroupForm.controls['graceperiod'].dirty || ProductGroupForm.controls['graceperiod'].touched)"
+              class="alert alert-danger">
+              <div *ngIf="ProductGroupForm.controls['graceperiod'].errors?.['required']"> Field is Required.
+              </div>
+            </div>
+          </div>
+          <!-- supportgroupId Field Form Validations -->
+          <div class="col-sm-8 form-group px-4">
+            <label for="supportgroupId" class="py-3">SupportGroupId</label>
+            <input formControlName="supportgroupId" name="supportgroupId" type="number" id="supportgroupId"
+              class="form-control " placeholder="Enter SupportGroupId" />
+            <div
+              *ngIf="ProductGroupForm.controls['supportgroupId'].invalid && (ProductGroupForm.controls['supportgroupId'].dirty || ProductGroupForm.controls['supportgroupId'].touched )"
+              class="alert alert-danger">
+              <div *ngIf="ProductGroupForm.controls['supportgroupId'].errors?.['required']"> Field is Required.
+              </div>
+            </div>
+          </div>
+          <!-- comment Field Form Validations -->
+          <div class="col-sm-8 form-group px-4">
+            <label for="comment" class="py-3">Comment</label>
+            <textarea formControlName="comment" name="comment" type="text" id="comment" class="form-control "
+              placeholder="Share Your Comments"></textarea>
+            <div
+              *ngIf="ProductGroupForm.controls['comment'].invalid && (ProductGroupForm.controls['comment'].dirty || ProductGroupForm.controls['comment'].touched)"
+              class="alert alert-danger">
+              <div *ngIf="ProductGroupForm.controls['comment'].errors?.['maxlength']">comment don't
+                exceed 500 characters long.</div>
+
+            </div>
+          </div>
+          <!-- Enable Field Form Validations-->
+          <div class="col-sm-8 form-group px-4 pt-4 radiostyle">
+            <input type="radio" name="enabled" formControlName="enabled" [value]="1">Enable
+            <input type="radio" name="enabled" class="px-3" formControlName="enabled" [value]="0"> Disable
+          </div>
+          <!-- Add and Cancel Buttons -->
+          <div class="row p-4">
+            <div class="col-md-12 fixbutton">
+              <button
+                [disabled]="!ProductGroupForm.valid || ProductGroupForm.get('agreementId').value === 0 || ProductGroupForm.get('unitFactorId').value === 0 || ProductGroupForm.get('costModelId').value === 0 "
+                type="submit" class="btn btn-dark pe-4 px-4 hover"
+                type="submit">{{ProductGroupForm.get('id').value===0?"Add":"Edit"}}</button>
+              <button class="btn btn-dark pe-4 px-4 hover mx-2" routerLink="/ViewProductGroup">Cancel</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

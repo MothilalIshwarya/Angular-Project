@@ -1,0 +1,20 @@
+.demo {
+    border: 2px solid #ccc;
+    width: 750px;
+    height: 200px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    column-count: 2;
+    column-width: 100px;
+  }
+  
+  .column {
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+  }
+  .container{
+    overflow: auto;
+    scroll-behavior: smooth;
+  }

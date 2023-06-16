@@ -1,0 +1,57 @@
+<div class="content">
+    <app-navbar></app-navbar>
+    <div class="pt-4 px-4">
+        <div class="container-fluid px-4 pt-2 ">
+            <!-- Page Title -->
+            <h3 class="text-black ">CostModel List</h3>
+
+            <div class="header pt-3 input-group">
+                <!-- Search -->
+                <input #search class="form-control hover" id="search" type="text" placeholder="Search"
+                    aria-label="Search" (keyup)="filterByName(search)">
+                <!-- Add Button -->
+                <a routerLink="/AddCostModel">
+                    <button type="button" class="btn btn-dark pe-4 px-4 hover">Add</button>
+                </a>
+            </div>
+            <!-- Grid View -->
+            <div class="container-fluid pt-5 d-flex justify-content-between align-items-center rounded pad">
+                <table class="table ">
+                    <thead>
+                        <tr scope="row" class="headtrstyle">
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            *ngFor="let item of CostModel| paginate: {itemsPerPage : 5, currentPage: page,totalItems:totalLength}">
+                            <td>{{item.costModelName}}</td>
+                            <td>{{item.description}}</td>
+                            <td>
+                                <!-- Edit Icon -->
+                                <div class="edit-icon">
+                                    <a><i class="fa-solid fa-pen-to-square text-dark"
+                                            routerLink="/EditCostModel/{{item.id}}"></i></a>
+                                </div>
+                            </td>
+
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+
+            </div>
+            <!-- Pagination -->
+            <div *ngIf="CostModel.length > 5" class="mt-4 paginationDesign">
+                <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+            </div>
+        </div>
+
+    </div>
+    <app-footer></app-footer>
+</div>

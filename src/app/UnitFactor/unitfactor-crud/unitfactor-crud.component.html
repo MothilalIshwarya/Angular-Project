@@ -1,0 +1,104 @@
+<div class="content">
+  <app-navbar></app-navbar>
+  <div class="pt-4 px-4">
+    <div class="container-fluid pt-2 px-4">
+      <!-- Title -->
+      <h3 class="text-black pb-2">{{UnitFactorForm.get('id').value===0?"Add UnitFactor":"Edit UnitFactor"}}</h3>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <!-- Reactive Form -->
+        <form [formGroup]="UnitFactorForm" action="" name="myForm " #ngForm (ngSubmit)="Onsubmit(UnitFactorForm)">
+          <!-- UnitFactor  Code Field Form Validations -->
+          <div class="col-sm-8 form-group px-4">
+            <label for="courseName" class="pb-3">Unit Factor Code</label>
+            <input formControlName="unitFactorCode" name="unitFactorCode" type="text" id="courseName"
+              class="form-control" placeholder="Enter UnitFactor name">
+            <div
+              *ngIf="UnitFactorForm.controls['unitFactorCode'].invalid && (UnitFactorForm.controls['unitFactorCode'].dirty || UnitFactorForm.controls['unitFactorCode'].touched)"
+              class="alert alert-danger">
+
+              <div *ngIf="UnitFactorForm.controls['unitFactorCode'].errors?.['minlength']">unit factor code must be at
+                least
+                5 characters long.</div>
+              <div *ngIf="UnitFactorForm.controls['unitFactorCode'].errors?.['maxlength']">unit factor codedon't exceed
+                50
+                characters long.</div>
+              <div *ngIf="UnitFactorForm.controls['unitFactorCode'].errors?.['required']">Field is
+                required.</div>
+              <!-- <div
+                  *ngIf="UnitFactorForm.controls['unitFactorCode'].invalid || UnitFactorForm.controls['unitFactorCode'].errors?.['maxlength']">
+                  Please enter a valid unit factor code</div> -->
+            </div>
+            <div class="alert alert-danger" *ngIf="ErrorMessage">{{ErrorMessage}}</div>
+          </div>
+          <div class="col-sm-8 form-group px-4">
+            <label for="courseName" class="py-3">Descripition</label>
+            <input formControlName="description" name="description" type="text" id="courseName" class="form-control"
+              placeholder="Enter Descripition">
+            <div
+              *ngIf="UnitFactorForm.controls['description'].invalid && (UnitFactorForm.controls['description'].dirty || UnitFactorForm.controls['description'].touched)"
+              class="alert alert-danger">
+
+              <div *ngIf="UnitFactorForm.controls['description'].errors?.['minlength']">Description must be at least
+                5 characters long.</div>
+              <div *ngIf="UnitFactorForm.controls['description'].errors?.['maxlength']">Descriptioncodedon't exceed 500
+                characters long.</div>
+              <div *ngIf="UnitFactorForm.controls['description'].errors?.['required']">Field is
+                required.</div>
+              <!-- <div
+                  *ngIf="UnitFactorForm.controls['description'].invalid || UnitFactorForm.controls['description'].errors?.['maxlength']">
+                  Please enter a valid Description</div> -->
+            </div>
+          </div>
+          <div class="col-sm-8 form-group px-4">
+            <label for="courseName" class="py-3">Cost Value</label>
+            <input formControlName="costValue" name="costValue" type="number" id="courseName" class="form-control"
+              placeholder="Enter Descripition">
+            <div
+              *ngIf="UnitFactorForm.controls['costValue'].invalid && (UnitFactorForm.controls['costValue'].dirty || UnitFactorForm.controls['unitFactorCode'].touched)"
+              class="alert alert-danger">
+
+              <div *ngIf="UnitFactorForm.controls['costValue'].errors?.['minlength']">CostValue must be at least
+                5 characters long.</div>
+              <div *ngIf="UnitFactorForm.controls['costValue'].errors?.['maxlength']">CostValue don't exceed 25
+                characters long.</div>
+              <div *ngIf="UnitFactorForm.controls['costValue'].errors?.['required']">Field is
+                required.</div>
+              <!-- <div
+                  *ngIf="UnitFactorForm.controls['costValue'].invalid || UnitFactorForm.controls['costValue'].errors?.['maxlength']">
+                  Please enter a valid Cost Value</div> -->
+            </div>
+          </div>
+          <!-- Unitfactor Descripition Field Form Validations -->
+          <div class="col-sm-8 form-group px-4">
+            <label for="unitDefinitionId" class="py-3">UnitDefinition Description</label>
+            <select name="unitDefinitionId" id="UnitDefinitionId" formControlName="unitDefinitionId"
+              class="form-select">
+              <option value="0" disabled selected>Select the UnitDefinition</option>
+              <option *ngFor="let item of UnitDefinition" [value]="item.id"> {{item.description}}</option>
+            </select>
+            <div *ngIf="UnitFactorForm.get('unitDefinitionId').value === 0 && (UnitFactorForm.controls['unitDefinitionId'].dirty || UnitFactorForm.controls['unitDefinitionId'].touched)" class="alert alert-danger"> Field is Required</div> 
+             <div *ngIf="UnitFactorForm.controls['unitDefinitionId'].errors?.['required']"> Field is Required</div> 
+
+          </div>
+
+
+
+          <div class="row p-4">
+            <div class="col-md-12 ">
+              <button [disabled]="!UnitFactorForm.valid || UnitFactorForm.get('unitDefinitionId').value === 0" type="submit"
+                class="btn btn-dark pe-4 px-4 hover"
+                type="submit">{{UnitFactorForm.get('id').value===0?"Add":"Edit"}}</button>
+              <button class="btn btn-dark pe-4 px-4 hover mx-2" routerLink="/ViewUnitFactor"
+                type="submit">Cancel</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="p-4">
+  <app-footer></app-footer>
+</div>

@@ -1,0 +1,60 @@
+<div class="content">
+  <app-navbar></app-navbar>
+  <div class="pt-4 px-4">
+    <div class="container-fluid pt-2 px-4">
+      <!-- Title -->
+      <h3 class="text-black pb-2">{{CostModelForm.get('id').value===0?'Add CostModel':'Edit CostModel'}}</h3>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <!-- Reactive Form -->
+        <form [formGroup]="CostModelForm" action="" name="myForm "   #ngForm (ngSubmit)="Onsubmit(CostModelForm)">
+          <!-- CostModel Name Field Form Validations -->
+          <div class="col-sm-8 form-group px-4">
+            <label for="CostModelName" class="pb-3">Cost Model Name</label>
+            <input formControlName="CostModelName" name="CostModelName" 
+              type="text" id="CostModelName" class="form-control" placeholder="Enter CostModel name">
+            <div
+              *ngIf="CostModelForm.controls['CostModelName'].invalid && (CostModelForm.controls['CostModelName'].dirty || CostModelForm.controls['CostModelName'].touched)"
+              class="alert alert-danger">
+
+              <div *ngIf="CostModelForm.controls['CostModelName'].errors?.['minlength']">CostModelName must be at least
+                2 characters long.</div>
+              <div *ngIf="CostModelForm.controls['CostModelName'].errors?.['maxlength']">CostModelName don't exceed 20
+                characters long.</div>
+              <div *ngIf="CostModelForm.controls['CostModelName'].errors?.['required']"> Field is
+                required.</div>
+            </div>
+            <div class="alert alert-danger" *ngIf="ErrorMessage ">{{ErrorMessage}}</div>
+          </div>
+          <!-- CostModel Description Field Form Validations -->
+          <div class="col-sm-8 form-group px-4">
+            <label for="Description" class="py-3">Cost Model Description</label>
+            <textarea formControlName="Description" name="Description"  type="text"
+              id="Description" class="form-control " placeholder="Enter CostModel Description"></textarea>
+            <div
+              *ngIf="CostModelForm.controls['Description'].invalid && (CostModelForm.controls['Description'].dirty || CostModelForm.controls['Description'].touched)"
+              class="alert alert-danger">
+
+              <div *ngIf="CostModelForm.controls['Description'].errors?.['minlength']">Description must be at least 10
+                characters long.</div>
+              <div *ngIf="CostModelForm.controls['Description'].errors?.['maxlength']">Description don't exceed 200
+                characters long.</div>
+              <div *ngIf="CostModelForm.controls['Description'].errors?.['required']">Field is required.
+              </div>
+            </div>
+          </div>
+          <div class="row p-4">
+            <div class="col-md-12 ">
+              <button [disabled]="!CostModelForm.valid" type="submit" class="btn btn-dark pe-4 px-4 hover"
+                type="submit">{{CostModelForm.get('id').value===0?'ADD':'Edit'}}</button>
+              <button class="btn btn-dark pe-4 px-4 hover mx-2" routerLink="/ViewCostModel"
+                type="submit">Cancel</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>

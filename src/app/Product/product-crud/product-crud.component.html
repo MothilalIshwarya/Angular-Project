@@ -1,0 +1,189 @@
+<div class="content">
+    <app-navbar></app-navbar>
+    <div class="pt-4 px-4">
+        <div class="container-fluid pt-2 px-4">
+            <!-- Title -->
+            <h3 class="text-black pb-2">{{ProductForm.get('id').value===0?"Add Product":"Edit Product"}}</h3>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- Reactive Form -->
+                <form [formGroup]="ProductForm" action="" #ngForm name="myForm" (ngSubmit)="Onsubmit(ProductForm)">
+                    <!-- ProductGroupName Field Form Validations -->
+                    <div class="col-sm-8 form-group px-4">
+                        <label for="Product" class="py-3">Product Group Name</label>
+                        <select name="ProductGroupName" id="ProductGroupName" formControlName="productGroupId" class="form-select" name="_dept"
+                          >
+                          <option disabled value="0">Select the Product Group Name</option>
+                          <option *ngFor="let item of ProductGroup" value={{item.id}}> {{item.productGroupName}}</option>
+                        </select>
+                        <div
+                        *ngIf="ProductForm.get('productGroupId').value === 0 && (ProductForm.controls['productGroupId'].dirty || ProductForm.controls['productGroupId'].touched)"
+                        class="alert alert-danger"> ProductGroup is Required</div>
+                      <div *ngIf="ProductForm.controls['productGroupId'].errors?.['required']"> Field is Required</div>
+                    
+                      </div>
+                    <!-- Featurekey Field Form Validations -->
+                    <div class="col-sm-8 form-group px-4">
+                        <label for="FeaturesKey" class="py-3">FeaturesKey</label>
+                        <input formControlName="featuresKey" name="featuresKey" 
+                            type="text" id="courseDesc" class="form-control " placeholder="Enter Featurekey"/>
+                        <div *ngIf="ProductForm.controls['featuresKey'].invalid && (ProductForm.controls['featuresKey'].dirty || ProductForm.controls['featuresKey'].touched)"
+                            class="alert alert-danger">
+
+                            <div *ngIf="ProductForm.controls['featuresKey'].errors?.['minlength']"> FeaturesKey must be at least 5 characters long.</div>
+                            <div *ngIf="ProductForm.controls['featuresKey'].errors?.['maxlength']">
+                                FeaturesKey don't
+                                exceed 80
+                                characters long.</div>
+                            <div *ngIf="ProductForm.controls['featuresKey'].errors?.['required']">
+                                Field is
+                                required.
+                            </div>
+                            <!-- <div
+                                *ngIf="ProductForm.controls['featuresKey'].invalid || ProductForm.controls['featuresKey'].errors?.['maxlength']">
+                                Please enter a valid Course FeaturesKey</div> -->
+                        </div>
+                        <div class="alert alert-danger" *ngIf="ErrorMessage">{{ErrorMessage}}</div>
+                    </div>
+                    <!-- License Type Name Field Form Validations -->
+                    <div class="col-sm-8 form-group px-4">
+                        <label for="LicenseType" class="py-3">License Type Name</label>
+                        <select name="LicenseType" id="licTypeName" formControlName="licTypeId" class="form-select" name="_dept"
+                         >
+                          <option disabled value="0">Select the LicenseType</option>
+                          <option *ngFor="let item of LicenseType" value={{item.id}}> {{item.licTypeName}}</option>
+                        </select>
+                        <div
+                        *ngIf="ProductForm.get('licTypeId').value === 0 && (ProductForm.controls['licTypeId'].dirty || ProductForm.controls['licTypeId'].touched)"
+                        class="alert alert-danger"> LicenseType is Required</div>
+                      <div *ngIf="ProductForm.controls['licTypeId'].errors?.['required']"> Field is Required</div>
+                      </div>
+                    <!-- Display Name Field Form Validations -->
+                    <div class="col-sm-8 form-group px-4">
+                        <label for="displayName" class="py-3">Display Name</label>
+                        <input formControlName="displayName" name="displayName" 
+                            type="text" id="courseDesc" class="form-control " placeholder="Enter DisplayName"/>
+                        <div *ngIf="ProductForm.controls['displayName'].invalid && (ProductForm.controls['displayName'].dirty || ProductForm.controls['displayName'].touched)"
+                            class="alert alert-danger">
+
+                            <div *ngIf="ProductForm.controls['displayName'].errors?.['minlength']">
+                                DisplayName must be
+                                at least 5
+                                characters long.</div>
+                            <div *ngIf="ProductForm.controls['displayName'].errors?.['maxlength']">
+                                DisplayName don't
+                                exceed 80
+                                characters long.</div>
+                            <div *ngIf="ProductForm.controls['displayName'].errors?.['required']">
+                                Field is
+                                required.
+                            </div>
+                            <!-- <div
+                                *ngIf="ProductForm.controls['displayName'].invalid || ProductForm.controls['displayName'].errors?.['maxlength']">
+                                Please enter a valid Course DisplayName</div> -->
+                        </div>
+                    </div>
+                    <!-- License Count Field Form Validations -->
+                    <div class="col-sm-8 form-group px-4">
+                        <label for="licenseCount" class="py-3">license Count</label>
+                        <input formControlName="licenseCount" name="licenseCount"
+                            type="number" id="courseDesc" class="form-control " placeholder="Enter LicenseCount "/>
+                            <div *ngIf="ProductForm.controls['licenseCount'].invalid && (ProductForm.controls['licenseCount'].dirty || ProductForm.controls['licenseCount'].touched)"
+                            class="alert alert-danger">
+
+                            
+                            
+                            <div *ngIf="ProductForm.controls['licenseCount'].errors?.['required']">
+                                Field is
+                                required.
+                            </div>
+                            <!-- <div
+                                *ngIf="ProductForm.controls['licenseCount'].invalid || ProductForm.controls['licenseCount'].errors?.['maxlength']">
+                                Please enter a valid  licenseCount</div> -->
+                        </div>
+                    </div>
+                    <!-- Manufacturer Name Field Form Validations -->
+                    <div class="col-sm-8 form-group px-4">
+                        <label for="manufacturerName" class="py-3">Manufacturer Name</label>
+                        <input formControlName="manufacturerName" name="manufacturerName" 
+                            type="text" id="courseDesc" class="form-control " placeholder="Enter Manufacturer Name"/>
+                        <div *ngIf="ProductForm.controls['manufacturerName'].invalid && (ProductForm.controls['manufacturerName'].dirty || ProductForm.controls['manufacturerName'].touched)"
+                            class="alert alert-danger">
+
+                            <div *ngIf="ProductForm.controls['manufacturerName'].errors?.['minlength']">
+                                ManufacturerName must be
+                                at least 5
+                                characters long.</div>
+                            <div *ngIf="ProductForm.controls['manufacturerName'].errors?.['maxlength']">
+                                ManufacturerName don't
+                                exceed 160
+                                characters long.</div>
+                            <div *ngIf="ProductForm.controls['manufacturerName'].errors?.['required']">
+                                Field is
+                                required.
+                            </div>
+                            <!-- <div
+                                *ngIf="ProductForm.controls['manufacturerName'].invalid || ProductForm.controls['manufacturerName'].errors?.['maxlength']">
+                                Please enter a valid Course ManufacturerName</div> -->
+                        </div>
+                    </div>
+                    <!-- comment Field Form Validations -->
+                    <div class="col-sm-8 form-group px-4">
+                        <label for="Comment" class="py-3">Comment</label>
+                        <textarea formControlName="comment" name="comment" 
+                            type="text" id="courseDesc" class="form-control " placeholder="Enter Your Comments"></textarea>
+                        <div *ngIf="ProductForm.controls['comment'].invalid && (ProductForm.controls['comment'].dirty || ProductForm.controls['comment'].touched)"
+                            class="alert alert-danger">
+
+                            
+                            <div *ngIf="ProductForm.controls['comment'].errors?.['maxlength']">comment don't
+                                exceed 1000
+                                characters long.</div>
+                            <div *ngIf="ProductForm.controls['comment'].errors?.['required']">Field is
+                                required.
+                            </div>
+                            <!-- <div
+                                *ngIf="ProductForm.controls['comment'].invalid || ProductForm.controls['comment'].errors?.['maxlength']">
+                                Please enter a valid comment</div> -->
+                        </div>
+                    </div>
+                    <!-- is Approved Field Form Validations-->
+                    <div class="col-sm-8 form-group px-4">
+                        <label for="LicenseType" class="py-3">Is Approved</label>
+                        <select name="isApproved" id="isApproved" formControlName="isApproved" class="form-select" name="_dept"
+                          >
+                          <option disabled  value="0">Select the isApproved</option>
+                          <option value="1">Approved</option>
+                          <option value="2">Not Approved</option>
+                        </select>
+                        <div
+                        *ngIf="ProductForm.get('isApproved').value === 0 && (ProductForm.controls['isApproved'].dirty || ProductForm.controls['isApproved'].touched)"
+                        class="alert alert-danger"> Field is Required</div>
+                      <div *ngIf="ProductForm.controls['isApproved'].errors?.['required']"> Field is Required</div>
+                      
+                    </div>
+                    <!-- Enable Field Form Validations-->
+                    <div class="col-sm-8 form-group px-4 pt-4 radiostyle">
+                        <input type="radio" name="enabled" formControlName="enabled" [value]="1"
+                           > Enable
+                        <input type="radio" name="enabled" class="px-3" formControlName="enabled" [value]="0"
+                           > Disable
+                    </div>
+
+                    <!-- Add and Cancel Buttons -->
+                    <div class="row p-4">
+                        <div class="col-md-12 fixbutton">
+                            <button [disabled]="!ProductForm.valid || ProductForm.get('productGroupId').value === 0 || ProductForm.get('licTypeId').value === 0 || ProductForm.get('isApproved').value === 0" class="btn btn-dark pe-4 px-4 hover"
+                                type="submit">{{ProductForm.get('id').value===0?"Add":"Edit"}}</button>
+                            <button class="btn btn-dark pe-4 px-4 hover mx-2" routerLink="/ViewProduct"
+                                type="submit">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+

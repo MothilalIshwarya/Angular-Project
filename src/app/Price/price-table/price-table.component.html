@@ -1,0 +1,107 @@
+<div class="content">
+    <app-navbar></app-navbar>
+    <div class="pt-4 px-4">
+        <div class="container-fluid pt-2 px-4">
+            <!-- Title -->
+            <h3 class="text-black pb-2">Price Calculation</h3>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- Reactive Form -->
+                <form [formGroup]="PriceForm" action="" #ngForm name="myForm" (ngSubmit)="Onsubmit()">
+                    <!-- vendorId Field Form Validations -->
+                    <div class="col-sm-8 form-group px-4">
+                        <label for="vendorId" class="py-3">Vendor Name</label>
+                        <select name="vendorId" id="vendorId" formControlName="vendorId" class="form-select"
+                            name="_dept" (change)="onVendorInputChange(PriceForm.get('vendorId').value)">
+                            <option disabled value="0">Select the Vendor Name</option>
+                            <option *ngFor="let item of Vendor" value={{item.id}}> {{item.vendorName}}
+                            </option>
+                        </select>
+                        <div *ngIf="PriceForm.get('vendorId').value === 0 && (PriceForm.controls['vendorId'].dirty || PriceForm.controls['vendorId'].touched)"
+                            class="alert alert-danger"> Vendor Name is Required</div>
+                        <div *ngIf="PriceForm.get('agreementId').value === 0 &&  PriceForm.controls['agreementId'].touched && PriceForm.get('vendorId').value === 0 && !(PriceForm.controls['vendorId'].dirty || PriceForm.controls['vendorId'].touched)"
+                            class="alert alert-danger"> Vendor Name is Required</div>
+                    </div>
+                    <!-- AgreementId Field Form Validations -->
+                    <div class="col-sm-8 form-group px-4">
+                        <label for="AgreementId" class="py-3">Agreement Code</label>
+                        <select name="AgreementId" id="AgreementId" formControlName="agreementId"
+                            (change)="onAgreementInputChange(PriceForm.get('agreementId').value)" class="form-select"
+                            name="_dept">
+                            <option disabled selected value="0">Select the Agreement Code</option>
+                            <option *ngFor="let item of Agreement" value={{item.id}}> {{item.agreementCode}} -
+                                {{item.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="PriceForm.get('agreementId').value === 0 && (PriceForm.controls['agreementId'].dirty || PriceForm.controls['agreementId'].touched)"
+                            class="alert alert-danger"> AgreementCode is Required</div>
+                    </div>
+                    <!-- ProductGroup Field Form Validations -->
+                    <div class="col-sm-8 form-group px-4" *ngIf="boolcostmodel">
+                        <label for="ProductGroupId" class="py-3">ProductGroup Name</label>
+                        <div>
+                            <ng-multiselect-dropdown [settings]="dropdownSettings" [data]="ProductGroup"
+                                formControlName="productGroupId">
+                            </ng-multiselect-dropdown>
+                        </div>
+                        <div *ngIf="PriceForm.controls['productGroupId'].errors?.required && PriceForm.controls['productGroupId'].touched"
+                            class="alert alert-danger"> ProductGroup is Required</div>
+                    </div>
+                    <!-- Start Date Calender Field Form Validations -->
+                    <div class="col-sm-8 form-group px-4">
+                        <label for="Datestart" class="py-3">Start Date </label>
+                        <input type="date" [min]="date|date:'yyyy-MM-dd'" class="form-control" value="date"
+                            formControlName="dateStart" id="Datestart" />
+                        <div *ngIf="PriceForm.controls['dateStart'].invalid && (PriceForm.controls['dateStart'].dirty || PriceForm.controls['dateStart'].touched )"
+                            class="alert alert-danger">
+                            <div *ngIf="PriceForm.controls['dateStart'].errors?.['required']">
+                                Date Required.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Date Calender Field Form Validations -->
+                    <div class="col-sm-8 form-group px-4">
+                        <label for="DateEnd" class="py-3">End Date </label>
+                        <input type="date" [min]="PriceForm.controls['dateStart'].value" class="form-control"
+                            value="date" formControlName="dateEnd" id="DateEnd" />
+                        <div *ngIf="PriceForm.controls['dateEnd'].invalid && (PriceForm.controls['dateEnd'].dirty || PriceForm.controls['dateEnd'].touched )"
+                            class="alert alert-danger">
+
+                            <div *ngIf="PriceForm.controls['dateEnd'].errors?.['required']">
+                                Date Required.
+                            </div>
+                            <div *ngIf="PriceForm.get('dateEnd').hasError('invalidEndDate')">
+                                Invalid End Date
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Price Field Form Validations -->
+                    <div class="col-sm-8 form-group px-4">
+                        <label for="Price" class="py-3">Contract Price </label>
+                        <input type="number" class="form-control" value="PriceAmount" formControlName="PriceAmount"
+                            placeholder="Enter Contract Price" id="Price" />
+                        <div *ngIf="PriceForm.controls['PriceAmount'].invalid && (PriceForm.controls['PriceAmount'].dirty || PriceForm.controls['PriceAmount'].touched )"
+                            class="alert alert-danger">
+                            <div *ngIf="PriceForm.controls['PriceAmount'].errors?.['required']">
+                                PriceAmount is Required.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add Buttons -->
+                    <div class="row p-4">
+                        <div class="col-md-12 fixbutton">
+                            <button
+                                [disabled]="!PriceForm.valid|| PriceForm.get('vendorId').value===0 || PriceForm.get('agreementId').value===0"
+                                type="submit" class="btn btn-dark pe-4 px-4 hover" type="submit">ADD</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- price grid component -->
+                <div *ngIf="PriceForm.valid && enable" class="p-4">
+                    <app-pricegrid [InputItem]="PriceForm" (OutputItem)="ProductgroupValueChangeMethod($event)"></app-pricegrid>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
